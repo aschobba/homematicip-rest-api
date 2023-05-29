@@ -1246,3 +1246,30 @@ class AccessControlGroup(Group):
 
     def from_json(self, js, devices):
         super().from_json(js, devices)
+        
+class LockProfileGroup(Group):
+    def __init__(self, connection):
+        super().__init__(connection)
+
+    def from_json(self, js, devices):
+        super().from_json(js, devices)
+ 
+class AutoRelockProfileGroup(Group):
+    def __init__(self, connection):
+        super().__init__(connection)
+        self.autoRelockDelay = None
+        
+    def from_json(self, js, devices):
+        super().from_json(js, devices)
+        self.active = js["autoRelockDelay"]
+        
+class OpenDoorNotificationRuleGroup(Group):
+    def __init__(self, connection):
+        super().__init__(connection)
+        self.motorState = None
+        self.windowState = None
+
+    def from_json(self, js, devices):
+        super().from_json(js, devices)
+        self.active = js["motorState"]
+        self.active = js["windowState"]

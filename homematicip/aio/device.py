@@ -174,8 +174,10 @@ class AsyncHeatingThermostatCompact(HeatingThermostatCompact, AsyncSabotageDevic
     """HMIP-eTRV-C (Heating-thermostat compact without display)"""
 
 
+
 class AsyncHeatingThermostatEvo(HeatingThermostatEvo, AsyncOperationLockableDevice):
     """HMIP-eTRV-E (Heating-thermostat new evo version)"""
+
 
 
 class AsyncTemperatureHumiditySensorWithoutDisplay(
@@ -450,6 +452,8 @@ class AsyncFullFlushDimmer(AsyncDimmer):
 class AsyncPluggableDimmer(AsyncDimmer):
     """HMIP-PDT Pluggable Dimmer"""
 
+class AsyncRGBWDimmer(AsyncDimmer):
+    """HMIP-RGBW (RGBW_DIMMER)"""
 
 class AsyncWeatherSensor(WeatherSensor, AsyncDevice):
     """HMIP-SWO-B"""

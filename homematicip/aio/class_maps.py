@@ -67,6 +67,7 @@ TYPE_CLASS_MAP = {
     DeviceType.PUSH_BUTTON_FLAT: AsyncPushButtonFlat,
     DeviceType.REMOTE_CONTROL_8: AsyncRemoteControl8,
     DeviceType.REMOTE_CONTROL_8_MODULE: AsyncRemoteControl8Module,
+    DeviceType.RGBW_DIMMER: AsyncRGBWDimmer,
     DeviceType.ROOM_CONTROL_DEVICE: AsyncRoomControlDevice,
     DeviceType.ROOM_CONTROL_DEVICE_ANALOG: AsyncRoomControlDeviceAnalog,
     DeviceType.RAIN_SENSOR: AsyncRainSensor,

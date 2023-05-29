@@ -1,4 +1,5 @@
 # coding=utf-8
+# coding=utf-8
 import json
 import logging
 from collections import Counter
@@ -127,6 +128,11 @@ class Device(BaseDevice):
         "IFeatureProfilePeriodLimit": [],
         "IOptionalFeatureDisplayContrast": [],
         "IOptionalFeatureMountingOrientation": [],
+        "IOptionalFeatureControlsMountingOrientation": ["controlsMountingOrientation"],
+        "IOptionalFeatureDimmerState": [],
+        "IOptionalFeatureDeviceOperationMode": [],
+        "IOptionalFeatureDimmerState": [],
+        "IOptionalFeatureDeviceOperationMode": [],
     }
 
     def __init__(self, connection):
@@ -164,6 +170,7 @@ class Device(BaseDevice):
         self.powerShortCircuit = False
         self.deviceUndervoltage = False
         self.devicePowerFailureDetected = False
+        self.controlsMountingOrientation = False
         self.deviceIdentifySupported = (
             False  # just placeholder at the moment the feature doesn't set any values
         )
@@ -1631,6 +1638,8 @@ class DinRailDimmer3(Dimmer):
             super().__str__(), self.c1dimLevel, self.c2dimLevel, self.c3dimLevel
         )
 
+class RGBWDimmer(Dimmer):
+    """HMIP-RGBW (RGBW_DIMMER)"""
 
 class WeatherSensor(Device):
     """HMIP-SWO-B"""
@@ -2020,7 +2029,6 @@ class FullFlushInputSwitch(Switch):
 
 class DinRailSwitch(FullFlushInputSwitch):
     """HMIP-DRSI1 (Switch Actuator for DIN rail mount – 1x channel)"""
-
 
 class AccelerationSensor(Device):
     """HMIP-SAM (Contact Interface flush-mount – 1 channel)"""

@@ -2063,3 +2063,28 @@ class OpticalSignalGroupChannel(FunctionalChannel):
             self.simpleRGBColorState,
             self.userDesiredProfileMode,
         )
+
+class UniversalLightChannel(FunctionalChannel):
+    """this is the representative of the UniversalLightChannel UNIVERSAL_LIGHT_CHANNEL"""
+
+    def __init__(self, device, connection):
+        super().__init__(device, connection)
+
+        self.colorTemperature = None
+        self.dim2WarmActive = False
+        self.dimLevel = 0.0
+        self.humanCentricLightActive = False
+        self.lightSceneId = 0 
+        self.on = True
+        self.saturationLevel = None
+
+
+    def from_json(self, js, groups: Iterable[Group]):        
+        self.set_attr_from_dict("colorTemperature", js)
+        self.set_attr_from_dict("dim2WarmActive", js)
+        self.set_attr_from_dict("dimLevel", js)
+        self.set_attr_from_dict("humanCentricLightActive", js)
+        self.set_attr_from_dict("lightSceneId", js)
+        self.set_attr_from_dict("on", js)
+        self.set_attr_from_dict("saturationLevel", js)
+
