@@ -1640,7 +1640,52 @@ class DinRailDimmer3(Dimmer):
 
 class RGBWDimmer(Dimmer):
     """HMIP-RGBW (RGBW_DIMMER)"""
+    
+    def __init__(self, connection):
+        super().__init__(connection)
+        self.deviceOperationMode = None
 
+
+    def from_json(self, js):
+        super().from_json(js)
+
+        c = get_functional_channel("DEVICE_BASE", js)
+        if c:
+            self.deviceOperationMode = c["deviceOperationMode"]
+        
+        c = get_functional_channel("UNIVERSAL_LIGHT_CHANNEL", js)
+        if c:
+            self.profileMode = c["profileMode"]
+            self.userDesiredProfileMode = c["userDesiredProfileMode"]
+            self.dimLevel = c["dimLevel"]
+            
+        c = get_functional_channels("UNIVERSAL_LIGHT_CHANNEL", js)
+        if c:
+            self.c1dimLevel = c[0]["dimLevel"]
+            self.c2dimLevel = c[1]["dimLevel"]
+            self.c3dimLevel = c[2]["dimLevel"]
+            self.c4dimLevel = c[3]["dimLevel"]
+
+    def __str__(self):
+        if self.deviceOperationMode == 'UNIVERSAL_LIGHT_4_PWM':
+            return (
+                "{} deviceOperationMode({}) c1dimLevel({}) c2dimLevel({}) c3dimLevel({}) c4dimLevel({})"
+            ).format(
+                super().__str__(),
+                self.deviceOperationMode,
+                self.c1dimLevel,
+                self.c2dimLevel,
+                self.c3dimLevel,
+                self.c4dimLevel,
+            )
+        else:
+            return (
+                "{} deviceOperationMode({})"
+            ).format(
+                super().__str__(),
+                self.deviceOperationMode,
+            )
+ 
 class WeatherSensor(Device):
     """HMIP-SWO-B"""
 
